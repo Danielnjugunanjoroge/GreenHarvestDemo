@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenHarvest ERP Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <p>SIT 416 | ERP SYSTEMS</p>
+    <h1>GreenHarvest Agricultural Cooperative</h1>
+    <p>Purchase-to-Pay Workflow Demonstration</p>
+</header>
+
+<main>
+    <section class="panel">
+        <h2>Purchase-to-Pay Process</h2>
+
+        <div class="order">
+            <p><strong>Purchase Order:</strong> PO-GH-2026-014</p>
+            <p><strong>Supplier:</strong> Embu Farm Inputs Ltd.</p>
+            <p><strong>Product:</strong> Fertilizer (50 kg bags)</p>
+            <p><strong>Quantity:</strong> 100 bags</p>
+            <p><strong>Order Value:</strong> KES 120,000</p>
+        </div>
+
+        <ol id="steps">
+            <li>Purchase request</li>
+            <li>Manager approval</li>
+            <li>Purchase order creation</li>
+            <li>Goods receipt</li>
+            <li>Inventory update</li>
+            <li>Invoice matching</li>
+            <li>Payment authorization</li>
+            <li>Financial posting</li>
+        </ol>
+
+        <div class="buttons">
+            <button id="normalBtn">Run Normal Transaction</button>
+            <button id="errorBtn">Run Invoice Mismatch</button>
+            <button id="resetBtn">Reset Demo</button>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Transaction Result</h2>
+        <div id="result">
+            Select a button to run the workflow.
+        </div>
+
+        <h3>Inventory</h3>
+        <p id="inventory">Not posted</p>
+
+        <h3>Accounts Payable</h3>
+        <p id="payable">Not posted</p>
+
+        <h3>Payment Status</h3>
+        <p id="payment">Pending</p>
+    </section>
+
+    <section class="panel">
+        <h2>Three-Way Match</h2>
+        <p>Purchase Order: <strong id="poMatch">Pending</strong></p>
+        <p>Goods Receipt: <strong id="receiptMatch">Pending</strong></p>
+        <p>Supplier Invoice: <strong id="invoiceMatch">Pending</strong></p>
+
+        <h2>Activity Log</h2>
+        <ul id="log">
+            <li>Demo initialized.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    GreenHarvest Agricultural Cooperative | Fictional assignment demonstration
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
