@@ -1,82 +1,339 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenHarvest ERP Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GreenHarvest ERP | Operations Console</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+<div class="layout">
 
-<header>
-    <p>SIT 416 | ERP SYSTEMS</p>
-    <h1>GreenHarvest Agricultural Cooperative</h1>
-    <p>Purchase-to-Pay Workflow Demonstration</p>
-</header>
-
-<main>
-    <section class="panel">
-        <h2>Purchase-to-Pay Process</h2>
-
-        <div class="order">
-            <p><strong>Purchase Order:</strong> PO-GH-2026-014</p>
-            <p><strong>Supplier:</strong> Embu Farm Inputs Ltd.</p>
-            <p><strong>Product:</strong> Fertilizer (50 kg bags)</p>
-            <p><strong>Quantity:</strong> 100 bags</p>
-            <p><strong>Order Value:</strong> KES 120,000</p>
+    <aside class="sidebar">
+        <div class="brand">
+            <b>GH</b>
+            <span>
+                <strong>GreenHarvest</strong>
+                <small>ERP PLATFORM</small>
+            </span>
         </div>
 
-        <ol id="steps">
-            <li>Purchase request</li>
-            <li>Manager approval</li>
-            <li>Purchase order creation</li>
-            <li>Goods receipt</li>
-            <li>Inventory update</li>
-            <li>Invoice matching</li>
-            <li>Payment authorization</li>
-            <li>Financial posting</li>
-        </ol>
+        <p class="navlabel">WORKSPACE</p>
+        <a class="active">▦ &nbsp; Overview</a>
+        <a>⇄ &nbsp; Purchase to Pay</a>
+        <a>▤ &nbsp; Transaction Records</a>
+        <a>◈ &nbsp; Controls & Audit</a>
 
-        <div class="buttons">
-            <button id="normalBtn">Run Normal Transaction</button>
-            <button id="errorBtn">Run Invoice Mismatch</button>
-            <button id="resetBtn">Reset Demo</button>
+        <div class="sidefoot">
+            <div class="env">
+                ● &nbsp; Demo environment<br>
+                <small>Fictional training data</small>
+            </div>
+
+            <div class="user">
+                <b>AD</b> Admin Demo<br>
+                <small>System administrator</small>
+            </div>
         </div>
-    </section>
+    </aside>
 
-    <section class="panel">
-        <h2>Transaction Result</h2>
-        <div id="result">
-            Select a button to run the workflow.
+    <main>
+        <header>
+            <div>
+                <small class="eyebrow">
+                    GREENHARVEST AGRICULTURAL COOPERATIVE
+                </small>
+                <h1>Operations dashboard</h1>
+                <p>Purchase-to-pay control centre</p>
+            </div>
+
+            <div>
+                <label class="demo">● SIMULATION MODE</label>
+                <button id="reset">↻ Reset demo</button>
+            </div>
+        </header>
+
+        <section class="kpis">
+            <article>
+                <small>Purchase order value</small>
+                <b>KES 120,000</b>
+                <span>Current demonstration</span>
+            </article>
+
+            <article>
+                <small>Goods received</small>
+                <b id="goodsKpi">0 / 100 bags</b>
+                <span id="goodsSub">Awaiting receipt</span>
+            </article>
+
+            <article>
+                <small>Invoice status</small>
+                <b id="invoiceKpi">Not submitted</b>
+                <span>Three-way matching control</span>
+            </article>
+
+            <article>
+                <small>Payment status</small>
+                <b id="paymentKpi">Not released</b>
+                <span>Finance approval required</span>
+            </article>
+        </section>
+
+        <div class="columns">
+
+            <section class="panel workflow">
+
+                <div class="panelhead">
+                    <div>
+                        <small class="eyebrow">LIVE TRANSACTION</small>
+                        <h2>Purchase-to-pay workflow</h2>
+                        <p>Follow the transaction across procurement, stores and finance.</p>
+                    </div>
+
+                    <span id="status" class="pill">Not started</span>
+                </div>
+
+                <div class="scenario">
+                    <div>
+                        <b>Demo scenario</b>
+                        <small>Choose a transaction to demonstrate</small>
+                    </div>
+
+                    <div>
+                        <button class="scenario selected" data-s="normal">
+                            Successful purchase
+                        </button>
+
+                        <button class="scenario" data-s="mismatch">
+                            Invoice mismatch
+                        </button>
+
+                        <button class="scenario" data-s="partial">
+                            Partial delivery
+                        </button>
+                    </div>
+                </div>
+
+                <div class="meta">
+                    <div>
+                        <small>TRANSACTION ID</small>
+                        <b id="tx">GH-PO-2026-001</b>
+                    </div>
+
+                    <div>
+                        <small>SUPPLIER</small>
+                        <b>Umoja Farm Supplies Ltd.</b>
+                    </div>
+
+                    <div>
+                        <small>REQUESTED BY</small>
+                        <b>Storekeeper · Embu Centre</b>
+                    </div>
+
+                    <div>
+                        <small>ITEM</small>
+                        <b>Fertilizer · 100 bags</b>
+                    </div>
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-n="0">
+                        <i>1</i>
+                        <span>Requisition<small>Stores</small></span>
+                    </div>
+
+                    <hr>
+
+                    <div class="step" data-n="1">
+                        <i>2</i>
+                        <span>Approval & PO<small>Procurement</small></span>
+                    </div>
+
+                    <hr>
+
+                    <div class="step" data-n="2">
+                        <i>3</i>
+                        <span>Goods receipt<small>Warehouse</small></span>
+                    </div>
+
+                    <hr>
+
+                    <div class="step" data-n="3">
+                        <i>4</i>
+                        <span>Invoice match<small>Finance</small></span>
+                    </div>
+
+                    <hr>
+
+                    <div class="step" data-n="4">
+                        <i>5</i>
+                        <span>Payment<small>Finance</small></span>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <small id="stageNo" class="eyebrow">STEP 1 OF 5</small>
+
+                    <h3 id="stageTitle">Purchase requisition created</h3>
+
+                    <p id="description">
+                        The storekeeper has requested 100 bags of fertilizer
+                        for the Embu collection centre.
+                    </p>
+
+                    <div id="details" class="details"></div>
+
+                    <div id="alert" class="notice">
+                        CONTROL POINT — Every purchase begins with an
+                        authorized requisition and a documented business need.
+                    </div>
+
+                    <div class="actions">
+                        <label>
+                            Acting role
+
+                            <select id="role">
+                                <option>Procurement Officer</option>
+                                <option>Department Manager</option>
+                                <option>Warehouse Officer</option>
+                                <option>Finance Officer</option>
+                                <option>Finance Manager</option>
+                            </select>
+                        </label>
+
+                        <button id="next">
+                            Approve requisition & create PO →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="foot">
+                    <span>
+                        ◉ Local simulation only; no real supplier or bank is contacted.
+                    </span>
+
+                    <span id="progress">0 of 5 stages completed</span>
+                </div>
+            </section>
+
+            <aside class="right">
+
+                <section class="panel">
+                    <small class="eyebrow">FINANCIAL SNAPSHOT</small>
+                    <h2>Transaction summary</h2>
+
+                    <div class="amount">
+                        <span>Purchase order</span>
+                        <b>KES 120,000</b>
+                    </div>
+
+                    <div class="amount">
+                        <span>Supplier invoice</span>
+                        <b id="sumInvoice">—</b>
+                    </div>
+
+                    <div class="amount">
+                        <span>Variance</span>
+                        <b id="variance">—</b>
+                    </div>
+
+                    <div class="amount total">
+                        <span>Payment eligible</span>
+                        <b id="eligible">KES 0</b>
+                    </div>
+
+                    <div class="meterlabel">
+                        <span>Three-way match</span>
+                        <b id="match">Pending</b>
+                    </div>
+
+                    <div class="meter">
+                        <i id="meter"></i>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <small class="eyebrow">CONTROL FRAMEWORK</small>
+                    <h2>ERP safeguards</h2>
+
+                    <div class="safeguard">
+                        ✓
+                        <span>
+                            <b>Approval hierarchy</b>
+                            <small>Authorization before ordering</small>
+                        </span>
+                    </div>
+
+                    <div class="safeguard">
+                        ⇄
+                        <span>
+                            <b>Three-way matching</b>
+                            <small>PO + goods receipt + invoice</small>
+                        </span>
+                    </div>
+
+                    <div class="safeguard">
+                        ⊘
+                        <span>
+                            <b>Payment hold</b>
+                            <small>Exceptions require investigation</small>
+                        </span>
+                    </div>
+
+                    <div class="safeguard">
+                        ▤
+                        <span>
+                            <b>Audit trail</b>
+                            <small>Actions recorded by role</small>
+                        </span>
+                    </div>
+                </section>
+
+            </aside>
         </div>
 
-        <h3>Inventory</h3>
-        <p id="inventory">Not posted</p>
+        <div class="bottom">
 
-        <h3>Accounts Payable</h3>
-        <p id="payable">Not posted</p>
+            <section class="panel">
+                <small class="eyebrow">SYSTEM OUTPUT</small>
+                <h2>Transaction records</h2>
 
-        <h3>Payment Status</h3>
-        <p id="payment">Pending</p>
-    </section>
+                <div class="tablewrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DOCUMENT</th>
+                                <th>REFERENCE</th>
+                                <th>VALUE / QTY</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
 
-    <section class="panel">
-        <h2>Three-Way Match</h2>
-        <p>Purchase Order: <strong id="poMatch">Pending</strong></p>
-        <p>Goods Receipt: <strong id="receiptMatch">Pending</strong></p>
-        <p>Supplier Invoice: <strong id="invoiceMatch">Pending</strong></p>
+                        <tbody id="records"></tbody>
+                    </table>
+                </div>
+            </section>
 
-        <h2>Activity Log</h2>
-        <ul id="log">
-            <li>Demo initialized.</li>
-        </ul>
-    </section>
-</main>
+            <section class="panel">
+                <small class="eyebrow">TRACEABILITY</small>
+                <h2>
+                    Activity & audit log
+                    <span class="live">● LIVE</span>
+                </h2>
 
-<footer>
-    GreenHarvest Agricultural Cooperative | Fictional assignment demonstration
-</footer>
+                <div id="audit" class="audit"></div>
+            </section>
+
+        </div>
+
+        <footer>
+            GreenHarvest ERP Simulation · Academic demonstration only ·
+            All names and figures are fictional
+        </footer>
+
+    </main>
+</div>
 
 <script src="script.js"></script>
 </body>
