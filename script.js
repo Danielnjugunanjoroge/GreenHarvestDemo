@@ -11,6 +11,22 @@ const cash = n =>
     n == null
         ? '—'
         : 'KES ' + Number(n).toLocaleString('en-KE');
+// Current purchase order information
+
+let currentOrder = {
+    supplier: 'Umoja Farm Supplies Ltd.',
+    product: 'Fertilizer',
+    quantity: 100,
+    unitPrice: 1200,
+    location: 'Embu Centre',
+    deliveryDate: ''
+};
+
+// Calculate purchase order value
+
+function orderTotal() {
+    return currentOrder.quantity * currentOrder.unitPrice;
+}
 
 // Initial application state
 let s = {
